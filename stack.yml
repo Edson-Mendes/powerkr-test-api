@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres
+    container_name: powerkr-test-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: powerkr-test-db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: 1234
+    volumes:
+      - powerkr-test-volume:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    ports:
+      - 8000:8080
+
+volumes:
+  powerkr-test-volume:
