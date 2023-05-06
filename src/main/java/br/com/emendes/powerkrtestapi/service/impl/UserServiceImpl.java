@@ -19,6 +19,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static br.com.emendes.powerkrtestapi.util.constant.ConstantRole.USER_ROLE;
+
 /**
  * Implementação de UserService.
  */
@@ -34,7 +36,9 @@ public class UserServiceImpl implements UserService {
   @Override
   public UserResponse create(CreateUserRequest createUserRequest) {
     User user = userMapper.createUserRequestToUser(createUserRequest);
+
     user.setPassword(passwordEncoder.encode(createUserRequest.password()));
+    user.addRole(USER_ROLE);
 
     persistUser(user);
 

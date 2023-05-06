@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -64,6 +65,17 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     problemDetail.setTitle("Resource not found");
 
     return ResponseEntity.status(status).body(problemDetail);
+  }
+
+  @ExceptionHandler(BadCredentialsException.class)
+  public ResponseEntity<ProblemDetail> handleBadCredentials(BadCredentialsException ex) {
+    ProblemDetail problemDetail = ProblemDetail
+        .forStatusAndDetail(HttpStatusCode.valueOf(400), "Incorrect email or password");
+
+    problemDetail.setType(URI.create("https://github.com/Edson-Mendes/powerkr-test-api/problem-detail/bad-credentials"));
+    problemDetail.setTitle(ex.getMessage());
+
+    return ResponseEntity.badRequest().body(problemDetail);
   }
 
 }
