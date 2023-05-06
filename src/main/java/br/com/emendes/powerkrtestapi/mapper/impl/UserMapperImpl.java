@@ -7,6 +7,9 @@ import br.com.emendes.powerkrtestapi.mapper.UserMapper;
 import br.com.emendes.powerkrtestapi.model.entity.User;
 import org.springframework.stereotype.Component;
 
+/**
+ * Implementação de UserMapper.
+ */
 @Component
 public class UserMapperImpl implements UserMapper {
 

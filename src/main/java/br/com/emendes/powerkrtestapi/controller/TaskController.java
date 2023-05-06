@@ -13,6 +13,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * Classe que recebe as requisições que tratam do recurso Task.
+ */
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/tasks")
@@ -20,6 +23,9 @@ public class TaskController {
 
   private final TaskService taskService;
 
+  /**
+   * Método que trata a requisição POST /api/v1/tasks
+   */
   @PostMapping
   public ResponseEntity<TaskResponse> create(
       @RequestBody @Valid CreateTaskRequest createTaskRequest, UriComponentsBuilder uriComponentsBuilder) {
@@ -30,21 +36,39 @@ public class TaskController {
     return ResponseEntity.created(uri).body(taskResponse);
   }
 
+  /**
+   * Método que trata a requisição GET /api/v1/tasks
+   */
   @GetMapping
   public ResponseEntity<List<TaskResponse>> fetchAll() {
     return ResponseEntity.ok(taskService.fetchAll());
   }
 
+  /**
+   * Método que trata a requisição GET /api/v1/tasks/{id}, onde {id} é o identificador do recurso.
+   */
   @GetMapping("/{id}")
   public ResponseEntity<TaskResponse> findById(@PathVariable(name = "id") Long id) {
     return ResponseEntity.ok(taskService.findById(id));
   }
 
+  /**
+   * Método que trata a requisição PUT /api/v1/tasks/{id}, onde {id} é o identificador do recurso.
+   */
   @PutMapping("/{id}")
   public ResponseEntity<TaskResponse> update(
       @PathVariable(name = "id") Long id,
       @RequestBody @Valid UpdateTaskRequest updateTaskRequest) {
     return ResponseEntity.ok(taskService.update(id, updateTaskRequest));
+  }
+
+  /**
+   * Método que trata a requisição DELETE /api/v1/tasks/{id}, onde {id} é o identificador do recurso.
+   */
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id) {
+    taskService.delete(id);
+    return ResponseEntity.noContent().build();
   }
 
 }

@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+/**
+ * Implementação de TaskMapper.
+ */
 @Component
 public class TaskMapperImpl implements TaskMapper {
 

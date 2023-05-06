@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Implementação de TasKService.
+ * Implementação de TaskService.
  */
 @Slf4j
 @RequiredArgsConstructor
@@ -73,6 +73,22 @@ public class TaskServiceImpl implements TaskService {
     return taskMapper.taskToTaskResponse(task);
   }
 
+  @Override
+  public void delete(Long id) {
+    log.info("Attempt delete task with id : {}", id);
+    Task task = findTaskById(id);
+
+    taskRepository.delete(task);
+    log.info("task with id : {} successfully deleted from database", id);
+  }
+
+  /**
+   * Busca tarefa por id no banco de dados.
+   *
+   * @param id identificador da tarefa a ser buscada.
+   * @return Task encontrado no banco de dados.
+   * @throws ResourceNotFoundException caso não exista uma tarefa com o id informado.
+   */
   private Task findTaskById(Long id) {
     log.info("Searching for task with id : {}", id);
 

@@ -7,7 +7,7 @@ import br.com.emendes.powerkrtestapi.dto.response.TaskResponse;
 import java.util.List;
 
 /**
- * Interface Service responsável pelas regras de negócio envolvendo o recurso Task.
+ * Interface Service que contém as abstrações que manipulam o recurso Task.
  */
 public interface TaskService {
 
@@ -20,14 +20,14 @@ public interface TaskService {
   TaskResponse create(CreateTaskRequest createTaskRequest);
 
   /**
-   * Busca todas as Tarefas na base de dados.
+   * Busca todas as Tarefas no banco de dados.
    *
    * @return List de TaskResponse
    */
   List<TaskResponse> fetchAll();
 
   /**
-   * Busca uma Tarefa na base de dados.
+   * Busca uma Tarefa no banco de dados.
    *
    * @param id identificador da tarefa a ser buscada.
    * @return TaskResponse contendo id, title, description, status, creationDate and conclusionDate
@@ -35,6 +35,20 @@ public interface TaskService {
    */
   TaskResponse findById(Long id);
 
+  /**
+   * Método responsável por atualizar um Tarefa.
+   *
+   * @param id identificador do tarefa a ser atualizado.
+   * @param updateTaskRequest contém os novos dados do Tarefa.
+   * @return TaskResponse contendo id, title, description, status and creationDate da tarefa atualizada.
+   */
   TaskResponse update(Long id, UpdateTaskRequest updateTaskRequest);
+
+  /**
+   * Deletar uma tarefa por id do banco de dados.
+   *
+   * @param id identificador da tarefa a ser deletada.
+   */
+  void delete(Long id);
 
 }
