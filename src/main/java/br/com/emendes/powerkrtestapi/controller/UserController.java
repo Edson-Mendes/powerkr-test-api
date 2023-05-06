@@ -1,4 +1,4 @@
-package br.com.emendes.powerkrtestapi;
+package br.com.emendes.powerkrtestapi.controller;
 
 import br.com.emendes.powerkrtestapi.dto.request.CreateUserRequest;
 import br.com.emendes.powerkrtestapi.dto.request.UpdateUserRequest;
@@ -46,6 +46,12 @@ public class UserController {
       @PathVariable(name = "id") Long id,
       @RequestBody @Valid UpdateUserRequest updateUserRequest) {
     return ResponseEntity.ok(userService.update(id, updateUserRequest));
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id) {
+    userService.delete(id);
+    return ResponseEntity.noContent().build();
   }
 
 }

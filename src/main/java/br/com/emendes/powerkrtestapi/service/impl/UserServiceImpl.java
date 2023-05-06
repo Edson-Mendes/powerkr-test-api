@@ -67,8 +67,6 @@ public class UserServiceImpl implements UserService {
    */
   @Override
   public UserResponse findById(Long id) {
-    log.info("Searching for user with id : {}", id);
-
     return userMapper.userToUserResponse(findUserById(id));
   }
 
@@ -80,6 +78,7 @@ public class UserServiceImpl implements UserService {
    */
   @Override
   public UserResponse update(Long id, UpdateUserRequest updateUserRequest) {
+    log.info("Attempt update user with id : {}", id);
     User user = findUserById(id);
     userMapper.merge(updateUserRequest, user);
 
@@ -89,12 +88,27 @@ public class UserServiceImpl implements UserService {
   }
 
   /**
+   * Método responsável por deletar um usuário do banco de dados.
+   * @param id identificador do usuário a ser deletado.
+   */
+  @Override
+  public void delete(Long id) {
+    log.info("Attempt delete user with id : {}", id);
+    User user = findUserById(id);
+
+    userRepository.delete(user);
+    log.info("user with id : {} successfully deleted from database", id);
+  }
+
+  /**
    * Método privado para buscar um usuário no banco de dados.
    * @param id identificador do usuário a ser atualizado.
    * @return User encontrado no banco de dados.
    * @throws ResourceNotFoundException caso não exista um usuário com o id informado.
    */
   private User findUserById(Long id) {
+    log.info("Searching for user with id : {}", id);
+
     return userRepository.findById(id)
         .orElseThrow(() -> {
           log.info("User not found with id : {}", id);
@@ -112,6 +126,7 @@ public class UserServiceImpl implements UserService {
       userRepository.save(user);
       log.info("user {} successfully persisted with id : {}", user.getEmail(), user.getId());
     } catch (DataIntegrityViolationException exception) {
+      log.info("Data conflict, the email {} is already in database", user.getEmail());
       throw new EmailAlreadyInUseException(String.format("Email {%s} already in use", user.getEmail()));
     }
   }
