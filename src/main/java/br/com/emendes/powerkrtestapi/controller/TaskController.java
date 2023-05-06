@@ -1,6 +1,7 @@
 package br.com.emendes.powerkrtestapi.controller;
 
 import br.com.emendes.powerkrtestapi.dto.request.CreateTaskRequest;
+import br.com.emendes.powerkrtestapi.dto.request.UpdateTaskRequest;
 import br.com.emendes.powerkrtestapi.dto.response.TaskResponse;
 import br.com.emendes.powerkrtestapi.service.TaskService;
 import jakarta.validation.Valid;
@@ -32,6 +33,18 @@ public class TaskController {
   @GetMapping
   public ResponseEntity<List<TaskResponse>> fetchAll() {
     return ResponseEntity.ok(taskService.fetchAll());
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<TaskResponse> findById(@PathVariable(name = "id") Long id) {
+    return ResponseEntity.ok(taskService.findById(id));
+  }
+
+  @PutMapping("/{id}")
+  public ResponseEntity<TaskResponse> update(
+      @PathVariable(name = "id") Long id,
+      @RequestBody @Valid UpdateTaskRequest updateTaskRequest) {
+    return ResponseEntity.ok(taskService.update(id, updateTaskRequest));
   }
 
 }

@@ -1,6 +1,7 @@
 package br.com.emendes.powerkrtestapi.service;
 
 import br.com.emendes.powerkrtestapi.dto.request.CreateTaskRequest;
+import br.com.emendes.powerkrtestapi.dto.request.UpdateTaskRequest;
 import br.com.emendes.powerkrtestapi.dto.response.TaskResponse;
 
 import java.util.List;
@@ -11,18 +12,29 @@ import java.util.List;
 public interface TaskService {
 
   /**
-   * Método responsável por persistir uma Tarefa no banco dados.
+   * Salva uma Tarefa no banco dados.
    *
    * @param createTaskRequest contém os dados da Tarefa que será salva.
-   * @return TaskResponse contendo id, title, description, status, creationDate da tarefa salva.
+   * @return TaskResponse contendo id, title, description, status and creationDate da tarefa salva.
    */
   TaskResponse create(CreateTaskRequest createTaskRequest);
 
   /**
-   * Método responsável por buscar todas as Tarefas na base de dados.
+   * Busca todas as Tarefas na base de dados.
    *
    * @return List de TaskResponse
    */
   List<TaskResponse> fetchAll();
+
+  /**
+   * Busca uma Tarefa na base de dados.
+   *
+   * @param id identificador da tarefa a ser buscada.
+   * @return TaskResponse contendo id, title, description, status, creationDate and conclusionDate
+   * da tarefa salva.
+   */
+  TaskResponse findById(Long id);
+
+  TaskResponse update(Long id, UpdateTaskRequest updateTaskRequest);
 
 }

@@ -1,6 +1,7 @@
 package br.com.emendes.powerkrtestapi.mapper.impl;
 
 import br.com.emendes.powerkrtestapi.dto.request.CreateTaskRequest;
+import br.com.emendes.powerkrtestapi.dto.request.UpdateTaskRequest;
 import br.com.emendes.powerkrtestapi.dto.response.TaskResponse;
 import br.com.emendes.powerkrtestapi.mapper.TaskMapper;
 import br.com.emendes.powerkrtestapi.model.TaskStatus;
@@ -32,6 +33,13 @@ public class TaskMapperImpl implements TaskMapper {
         .status(task.getStatus().name())
         .conclusionDate(task.getConclusionDate())
         .build();
+  }
+
+  @Override
+  public void merge(UpdateTaskRequest updateTaskRequest, Task task) {
+    task.setTitle(updateTaskRequest.title());
+    task.setDescription(updateTaskRequest.description());
+    task.setCreationDate(LocalDateTime.parse(updateTaskRequest.creationDate()));
   }
 
 }

@@ -1,8 +1,11 @@
 package br.com.emendes.powerkrtestapi.service.impl;
 
 import br.com.emendes.powerkrtestapi.dto.request.CreateTaskRequest;
+import br.com.emendes.powerkrtestapi.dto.request.UpdateTaskRequest;
 import br.com.emendes.powerkrtestapi.dto.response.TaskResponse;
+import br.com.emendes.powerkrtestapi.exception.ResourceNotFoundException;
 import br.com.emendes.powerkrtestapi.mapper.TaskMapper;
+import br.com.emendes.powerkrtestapi.model.TaskStatus;
 import br.com.emendes.powerkrtestapi.model.entity.Task;
 import br.com.emendes.powerkrtestapi.repository.TaskRepository;
 import br.com.emendes.powerkrtestapi.service.TaskService;
@@ -10,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -39,6 +43,44 @@ public class TaskServiceImpl implements TaskService {
     List<Task> taskList = taskRepository.findAll();
 
     return taskList.stream().map(taskMapper::taskToTaskResponse).toList();
+  }
+
+  @Override
+  public TaskResponse findById(Long id) {
+    return taskMapper.taskToTaskResponse(findTaskById(id));
+  }
+
+  @Override
+  public TaskResponse update(Long id, UpdateTaskRequest updateTaskRequest) {
+    log.info("Attempt update task with id : {}", id);
+    Task task = findTaskById(id);
+
+    taskMapper.merge(updateTaskRequest, task);
+    TaskStatus taskStatusUpdate = TaskStatus.valueOf(updateTaskRequest.status());
+
+    if (!task.getStatus().equals(taskStatusUpdate)) {
+      if (taskStatusUpdate.equals(TaskStatus.CONCLUDED)) {
+        task.setConclusionDate(LocalDateTime.now());
+      } else {
+        task.setConclusionDate(null);
+      }
+      task.setStatus(taskStatusUpdate);
+    }
+
+    taskRepository.save(task);
+    log.info("task successfully updated with id : {}", task.getId());
+
+    return taskMapper.taskToTaskResponse(task);
+  }
+
+  private Task findTaskById(Long id) {
+    log.info("Searching for task with id : {}", id);
+
+    return taskRepository.findById(id)
+        .orElseThrow(() -> {
+          log.info("Task not found with id : {}", id);
+          return new ResourceNotFoundException("Task not found with id " + id);
+        });
   }
 
 }
