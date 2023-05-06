@@ -26,7 +26,8 @@ public class UserController {
   private final UserService userService;
 
   /**
-   * Método que trata a requisição POST /api/v1/users
+   * Método que trata a requisição POST /api/v1/users<br>
+   * Não é necessário estar autenticado.
    */
   @PostMapping
   public ResponseEntity<UserResponse> create(
@@ -38,7 +39,8 @@ public class UserController {
   }
 
   /**
-   * Método que trata a requisição GET /api/v1/users
+   * Método que trata a requisição GET /api/v1/users<br>
+   * É necessário estar autenticado.
    */
   @GetMapping
   public ResponseEntity<List<UserResponse>> fetch(@PageableDefault Pageable pageable) {
@@ -46,7 +48,8 @@ public class UserController {
   }
 
   /**
-   * Método que trata a requisição GET /api/v1/users/{id}, onde {id} é o identificador do recurso.
+   * Método que trata a requisição GET /api/v1/users/{id}, onde {id} é o identificador do recurso.<br>
+   * É necessário estar autenticado.
    */
   @GetMapping("/{id}")
   public ResponseEntity<UserResponse> findById(@PathVariable(name = "id") Long id) {
@@ -54,7 +57,8 @@ public class UserController {
   }
 
   /**
-   * Método que trata a requisição PUT /api/v1/users/{id}, onde {id} é o identificador do recurso.
+   * Método que trata a requisição PUT /api/v1/users/{id}, onde {id} é o identificador do recurso.<br>
+   * É necessário estar autenticado.
    */
   @PutMapping("/{id}")
   public ResponseEntity<UserResponse> update(
@@ -64,7 +68,8 @@ public class UserController {
   }
 
   /**
-   * Método que trata a requisição DELETE /api/v1/users/{id}, onde {id} é o identificador do recurso.
+   * Método que trata a requisição DELETE /api/v1/users/{id}, onde {id} é o identificador do recurso.<br>
+   * É necessário estar autenticado.
    */
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id) {

@@ -1,6 +1,8 @@
 package br.com.emendes.powerkrtestapi.service.impl;
 
 import br.com.emendes.powerkrtestapi.service.JwtService;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -28,7 +30,7 @@ public class JwtServiceImpl implements JwtService {
   @Override
   public String generateJWT(UserDetails userDetails) {
     return Jwts.builder()
-        .setIssuer("Adopet API")
+        .setIssuer("PowerKR Test API")
         .setSubject(userDetails.getUsername())
         .setIssuedAt(new Date(System.currentTimeMillis()))
         .setExpiration(new Date(System.currentTimeMillis() + Long.parseLong(expiration)))
@@ -36,9 +38,31 @@ public class JwtServiceImpl implements JwtService {
         .compact();
   }
 
+  @Override
+  public boolean isTokenValid(String token) {
+    try {
+      return extractAllClaims(token).getExpiration().before(new Date());
+    } catch (JwtException exception) {
+      return false;
+    }
+  }
+
+  @Override
+  public String extractUsername(String token) {
+    return extractAllClaims(token).getSubject();
+  }
+
   private Key getKey() {
     byte[] secretBytes = secret.getBytes();
     return Keys.hmacShaKeyFor(secretBytes);
+  }
+
+  private Claims extractAllClaims(String token) {
+    return Jwts.parserBuilder()
+        .setSigningKey(getKey())
+        .build()
+        .parseClaimsJws(token)
+        .getBody();
   }
 
 }

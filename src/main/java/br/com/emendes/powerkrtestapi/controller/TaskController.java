@@ -24,7 +24,8 @@ public class TaskController {
   private final TaskService taskService;
 
   /**
-   * Método que trata a requisição POST /api/v1/tasks
+   * Método que trata a requisição POST /api/v1/tasks<br>
+   * É necessário estar autenticado.
    */
   @PostMapping
   public ResponseEntity<TaskResponse> create(
@@ -37,7 +38,8 @@ public class TaskController {
   }
 
   /**
-   * Método que trata a requisição GET /api/v1/tasks
+   * Método que trata a requisição GET /api/v1/tasks<br>
+   * É necessário estar autenticado.
    */
   @GetMapping
   public ResponseEntity<List<TaskResponse>> fetchAll() {
@@ -45,7 +47,8 @@ public class TaskController {
   }
 
   /**
-   * Método que trata a requisição GET /api/v1/tasks/{id}, onde {id} é o identificador do recurso.
+   * Método que trata a requisição GET /api/v1/tasks/{id}, onde {id} é o identificador do recurso.<br>
+   * É necessário estar autenticado.
    */
   @GetMapping("/{id}")
   public ResponseEntity<TaskResponse> findById(@PathVariable(name = "id") Long id) {
@@ -53,7 +56,8 @@ public class TaskController {
   }
 
   /**
-   * Método que trata a requisição PUT /api/v1/tasks/{id}, onde {id} é o identificador do recurso.
+   * Método que trata a requisição PUT /api/v1/tasks/{id}, onde {id} é o identificador do recurso.<br>
+   * É necessário estar autenticado.
    */
   @PutMapping("/{id}")
   public ResponseEntity<TaskResponse> update(
@@ -63,7 +67,8 @@ public class TaskController {
   }
 
   /**
-   * Método que trata a requisição DELETE /api/v1/tasks/{id}, onde {id} é o identificador do recurso.
+   * Método que trata a requisição DELETE /api/v1/tasks/{id}, onde {id} é o identificador do recurso.<br>
+   * É necessário estar autenticado.
    */
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> delete(@PathVariable(name = "id") Long id) {
