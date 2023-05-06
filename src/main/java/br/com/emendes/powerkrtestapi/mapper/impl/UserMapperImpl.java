@@ -1,6 +1,7 @@
 package br.com.emendes.powerkrtestapi.mapper.impl;
 
 import br.com.emendes.powerkrtestapi.dto.request.CreateUserRequest;
+import br.com.emendes.powerkrtestapi.dto.request.UpdateUserRequest;
 import br.com.emendes.powerkrtestapi.dto.response.UserResponse;
 import br.com.emendes.powerkrtestapi.mapper.UserMapper;
 import br.com.emendes.powerkrtestapi.model.entity.User;
@@ -24,6 +25,12 @@ public class UserMapperImpl implements UserMapper {
         .name(user.getName())
         .email(user.getEmail())
         .build();
+  }
+
+  @Override
+  public void merge(UpdateUserRequest updateUserRequest, User user) {
+    user.setName(updateUserRequest.name());
+    user.setEmail(updateUserRequest.email());
   }
 
 }

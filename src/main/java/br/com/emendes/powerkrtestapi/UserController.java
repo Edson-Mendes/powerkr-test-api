@@ -1,6 +1,7 @@
 package br.com.emendes.powerkrtestapi;
 
 import br.com.emendes.powerkrtestapi.dto.request.CreateUserRequest;
+import br.com.emendes.powerkrtestapi.dto.request.UpdateUserRequest;
 import br.com.emendes.powerkrtestapi.dto.response.UserResponse;
 import br.com.emendes.powerkrtestapi.service.UserService;
 import jakarta.validation.Valid;
@@ -33,6 +34,18 @@ public class UserController {
   @GetMapping
   public ResponseEntity<Page<UserResponse>> fetch(@PageableDefault Pageable pageable) {
     return ResponseEntity.ok(userService.fetch(pageable));
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<UserResponse> findById(@PathVariable(name = "id") Long id) {
+    return ResponseEntity.ok(userService.findById(id));
+  }
+
+  @PutMapping("/{id}")
+  public ResponseEntity<UserResponse> update(
+      @PathVariable(name = "id") Long id,
+      @RequestBody @Valid UpdateUserRequest updateUserRequest) {
+    return ResponseEntity.ok(userService.update(id, updateUserRequest));
   }
 
 }

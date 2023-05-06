@@ -1,6 +1,7 @@
 package br.com.emendes.powerkrtestapi.handler;
 
 import br.com.emendes.powerkrtestapi.exception.EmailAlreadyInUseException;
+import br.com.emendes.powerkrtestapi.exception.ResourceNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
@@ -43,13 +44,26 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
 
   @ExceptionHandler(EmailAlreadyInUseException.class)
   public ResponseEntity<ProblemDetail> handleEmailAlreadyInUse(EmailAlreadyInUseException ex) {
+    int status = 409;
     ProblemDetail problemDetail = ProblemDetail
-        .forStatusAndDetail(HttpStatusCode.valueOf(409), ex.getMessage());
+        .forStatusAndDetail(HttpStatusCode.valueOf(status), ex.getMessage());
 
     problemDetail.setType(URI.create("https://github.com/Edson-Mendes/powerkr-test-api/problem-detail/email-already-in-use"));
     problemDetail.setTitle("Email conflict");
 
-    return ResponseEntity.status(409).body(problemDetail);
+    return ResponseEntity.status(status).body(problemDetail);
+  }
+
+  @ExceptionHandler(ResourceNotFoundException.class)
+  public ResponseEntity<ProblemDetail> handleEmailAlreadyInUse(ResourceNotFoundException ex) {
+    int status = 404;
+    ProblemDetail problemDetail = ProblemDetail
+        .forStatusAndDetail(HttpStatusCode.valueOf(status), ex.getMessage());
+
+    problemDetail.setType(URI.create("https://github.com/Edson-Mendes/powerkr-test-api/problem-detail/resource-not-found"));
+    problemDetail.setTitle("Resource not found");
+
+    return ResponseEntity.status(status).body(problemDetail);
   }
 
 }
