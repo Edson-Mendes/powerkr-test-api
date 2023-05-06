@@ -12,6 +12,7 @@ public record CreateUserRequest(
     String name,
     @NotBlank(message = "email must not be blank")
     @Email(message = "must be a well formed email")
+    @Size(max = 255, message = "email must max {max} characters")
     String email,
     @NotBlank(message = "password must not be blank")
     @Size(min = 8, max = 20, message = "password must contain between {min} and {max} characters")
