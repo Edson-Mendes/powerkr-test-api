@@ -6,7 +6,13 @@
 ![Badge Heroku](https://img.shields.io/static/v1?label=Heroku&message=Deploy&color=4f3074&style=for-the-badge&logo=Heroku)
 
 ## Resumo do projeto
-REST API para avaliação das minhas habilidades como desenvolvedor Backend Java.
+REST API para avaliação das minhas habilidades como desenvolvedor Backend Java. A aplicação possui endpoints para criaçao e Login de usuários, endpoints para gerenciar e manipular os recursos Usuário (User) e Tarefas (Task), que são protegidos e requerem autenticaçao por JWT (Json Web Token) para serem manipulados.<br>
+
+A aplicação está no ar no Heroku, usando banco dados PostgreSQL.<br>
+
+Fiquem a vontate para testar como quiser. Podem criar novos usuários ou usar as credenciais email: **edson@email.com** e password: **1234567890**.<br>
+
+Abaixo também tem uma maneira de subir a aplicação localmente usando um arquivo .yml e Docker Compose.
 
 ## Tecnologias e ferramentas
 - `IntelliJ`
@@ -316,7 +322,7 @@ Execute o comando abaixo na pasta clonada:
  ```
 
 O comando acima executará o arquivo [powerkrtest-api.yml](https://github.com/Edson-Mendes/powerkr-test-api/blob/main/powerkrtest-api.yml),
-que irá subir um container PostgreSQL e um container da Aplicação.<br>
+que irá subir um container PostgreSQL e um container da Aplicação na porta 8888.<br>
 Após subir os containers, acesse <http://localhost:8888/swagger-ui.html>.<br>
 Se algo der errado, fique a vontate para usar a versão em [deploy](https://powerkr-test-api.herokuapp.com/swagger-ui.html).
 
