@@ -1,6 +1,5 @@
 package br.com.emendes.powerkrtestapi.validation.annotation;
 
-import br.com.emendes.powerkrtestapi.validation.validator.DateTimeValidator;
 import br.com.emendes.powerkrtestapi.validation.validator.TaskStatusValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -13,6 +12,7 @@ import java.lang.annotation.Target;
 /**
  * O elemento anotado deve ser uma {@code String} que pode ser convertido para {@code TaskStatus}<br>
  * Elementos {@code null} são considerados válidos.
+ *
  * @author Edson Mendes
  */
 @Target(ElementType.FIELD)

@@ -22,6 +22,7 @@ REST API para avaliação das minhas habilidades como desenvolvedor Backend Java
 - `JJWT`
 - `Lombok`
 - `Heroku`
+- `JUnit 5`
 
 ## Funcionalidades
 
@@ -50,7 +51,8 @@ em um JSON no corpo da requisição. Segue abaixo um exemplo do corpo da requisi
 
 - `Criar Usuário - POST /api/v1/users`: Criar usuário enviando as informações **name**, **email** e **password**
 em um JSON no corpo da requisição.<br> 
-Não é necessário estar autenticado.<br> 
+Não é necessário estar autenticado.<br>
+O password é salvo criptografado no banco de dados usando BCryp.
 Segue abaixo um exemplo do corpo da requisição.
     ```json
       {
