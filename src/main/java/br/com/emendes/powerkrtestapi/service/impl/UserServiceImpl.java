@@ -12,14 +12,12 @@ import br.com.emendes.powerkrtestapi.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static br.com.emendes.powerkrtestapi.util.constant.ConstantRole.USER_ROLE;
+import static br.com.emendes.powerkrtestapi.util.constant.ApplicationConstants.USER_ROLE;
 
 /**
  * Implementação de UserService.

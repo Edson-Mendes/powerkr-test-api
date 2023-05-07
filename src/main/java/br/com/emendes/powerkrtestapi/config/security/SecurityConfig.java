@@ -26,6 +26,8 @@ public class SecurityConfig {
   private final AuthenticationProvider authenticationProvider;
 
   private static final String[] POST_WHITELIST = {"/api/v1/auth", "/api/v1/users"};
+  private static final String[] SWAGGER_WHITELIST = {
+      "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/favicon.ico"};
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -33,6 +35,7 @@ public class SecurityConfig {
 
         .authorizeHttpRequests()
         .requestMatchers(HttpMethod.POST, POST_WHITELIST).permitAll()
+        .requestMatchers(HttpMethod.GET, SWAGGER_WHITELIST).permitAll()
         .anyRequest().authenticated()
 
         .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

@@ -1,5 +1,6 @@
 package br.com.emendes.powerkrtestapi.controller;
 
+import br.com.emendes.powerkrtestapi.controller.swagger.TaskControllerSwagger;
 import br.com.emendes.powerkrtestapi.dto.request.CreateTaskRequest;
 import br.com.emendes.powerkrtestapi.dto.request.UpdateTaskRequest;
 import br.com.emendes.powerkrtestapi.dto.response.TaskResponse;
@@ -19,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/tasks")
-public class TaskController {
+public class TaskController implements TaskControllerSwagger {
 
   private final TaskService taskService;
 

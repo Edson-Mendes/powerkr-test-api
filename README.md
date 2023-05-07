@@ -12,7 +12,11 @@ REST API para avaliação das minhas habilidades como desenvolvedor Backend Java
 - `Java 17`
 - `Spring Boot`
 - `Spring Data JPA`
+- `Spring Validation`
+- `Spring Security`
+- `SpringDoc - OpenAPI`
 - `Docker`
 - `PostgreSQL`
 - `Flyway`
+- `JJWT`
 - `Lombok`

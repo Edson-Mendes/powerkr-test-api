@@ -1,5 +1,6 @@
 package br.com.emendes.powerkrtestapi.controller;
 
+import br.com.emendes.powerkrtestapi.controller.swagger.AuthenticationControllerSwagger;
 import br.com.emendes.powerkrtestapi.dto.request.AuthenticationRequest;
 import br.com.emendes.powerkrtestapi.dto.response.AuthenticationResponse;
 import br.com.emendes.powerkrtestapi.service.AuthenticationService;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/auth")
-public class AuthenticationController {
+public class AuthenticationController implements AuthenticationControllerSwagger {
 
   private final AuthenticationService authenticationService;
 

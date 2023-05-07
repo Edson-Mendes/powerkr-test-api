@@ -1,13 +1,12 @@
 package br.com.emendes.powerkrtestapi.controller;
 
+import br.com.emendes.powerkrtestapi.controller.swagger.UserControllerSwagger;
 import br.com.emendes.powerkrtestapi.dto.request.CreateUserRequest;
 import br.com.emendes.powerkrtestapi.dto.request.UpdateUserRequest;
 import br.com.emendes.powerkrtestapi.dto.response.UserResponse;
 import br.com.emendes.powerkrtestapi.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -21,7 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/users")
-public class UserController {
+public class UserController implements UserControllerSwagger {
 
   private final UserService userService;
 
@@ -43,7 +42,7 @@ public class UserController {
    * É necessário estar autenticado.
    */
   @GetMapping
-  public ResponseEntity<List<UserResponse>> fetch(@PageableDefault Pageable pageable) {
+  public ResponseEntity<List<UserResponse>> fetchAll() {
     return ResponseEntity.ok(userService.fetchAll());
   }
 
