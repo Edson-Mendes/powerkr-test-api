@@ -72,29 +72,29 @@ Segue abaixo um exemplo do corpo da requisição.
 
 - `Buscar Usuários - GET /api/v1/users`: Buscar todos os usuários cadastrados no sistema.<br>
   É necessário enviar token de autenticação no header da requisição, exemplo: **'Authorization: Bearer token.exemplo.de-autenticação'**.
-<br>
+  <br>
 
   Em caso de sucesso a resposta tem status 200 com um JSON no corpo da resposta contendo uma lista de informações 
   dos usuários cadastrados **id**, **name** e **email**. Segue abaixo um exemplo do corpo da resposta.
     ```json
-        [
-          {
-            "id" : 150,
-            "name" : "Lorem Ipsum",
-            "email" : "lorem@email.com"
-          },
-          {
-            "id" : 151,
-            "name" : "Dolor Sit",
-            "email" : "dolor@email.com"
-          }
-        ]
+    [
+      {
+        "id" : 150,
+        "name" : "Lorem Ipsum",
+        "email" : "lorem@email.com"
+      },
+      {
+        "id" : 151,
+        "name" : "Dolor Sit",
+        "email" : "dolor@email.com"
+      }
+    ]
     ```
 <br>
 
 - `Buscar Usuário por ID - GET /api/v1/users/ID`: Buscar usuário por **ID**. Onde **ID** é o identificador do usuário.<br>
   É necessário enviar token de autenticação no header da requisição, exemplo: **'Authorization: Bearer token.exemplo.de-autenticação'**.
-<br>
+  <br>
  
   Em caso de sucesso a resposta tem status 200 com um JSON no corpo da resposta contendo **id**, **name** e **email** do
   usuário buscado.<br> 
