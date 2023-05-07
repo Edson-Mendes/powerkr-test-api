@@ -7,8 +7,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
 
+/**
+ * Entidade JPA Usuário, refere-se a tabela t_user no banco de dados.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

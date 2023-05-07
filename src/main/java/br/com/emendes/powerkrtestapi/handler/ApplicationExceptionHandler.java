@@ -18,6 +18,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.net.URI;
 import java.util.stream.Collectors;
 
+/**
+ * Controller Advice para tratamento de algumas exception que podem ocorrer na aplicação.
+ */
 @ControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
 

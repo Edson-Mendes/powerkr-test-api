@@ -6,6 +6,13 @@ import br.com.emendes.powerkrtestapi.validation.annotation.TaskStatusValidation;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+/**
+ * Record DTO para receber dados de atualização de tarefa no corpo da requisição.
+ * @param title da tarefa
+ * @param description da tarefa
+ * @param creationDate da tarefa
+ * @param status da tarefa
+ */
 public record UpdateTaskRequest(
     @NotBlank(message = "title must not be blank")
     @Size(min = 1, max = 150, message = "name must contain between {min} and {max} characters")

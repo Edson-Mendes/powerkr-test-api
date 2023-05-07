@@ -12,6 +12,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implementação de AuthenticationService.
+ */
 @Slf4j
 @RequiredArgsConstructor
 @Service

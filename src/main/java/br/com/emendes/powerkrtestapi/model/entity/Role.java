@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
+/**
+ * Entidade JPA Role, refere-se a tabela t_role no banco de dados.<br>
+ * Contém as roles que um usuário pode ter.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

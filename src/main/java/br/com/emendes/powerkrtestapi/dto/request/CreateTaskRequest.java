@@ -5,6 +5,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
 
+/**
+ * Record DTO para receber dados de criação de tarefa no corpo da requisição.
+ * @param title da tarefa
+ * @param description da tarefa
+ * @param creationDate da tarefa
+ */
 @Builder
 public record CreateTaskRequest(
     @NotBlank(message = "title must not be blank")
@@ -14,7 +20,7 @@ public record CreateTaskRequest(
     @Size(min = 1, max = 255, message = "name must contain between {min} and {max} characters")
     String description,
     @NotBlank(message = "creationDate must not be blank")
-    @DateTimeValidation(message = "creationDate must be ISO 8601 format")
+    @DateTimeValidation(message = "creationDate must be ISO 8601 format - yyyy-MM-ddTHH:mm:ss")
     String creationDate
 ) {
 }

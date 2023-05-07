@@ -6,6 +6,9 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+/**
+ * Entidade JPA Tarefa, refere-se a tabela t_task no banco de dados.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

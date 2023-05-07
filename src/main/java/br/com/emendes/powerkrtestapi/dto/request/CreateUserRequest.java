@@ -5,6 +5,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
 
+/**
+ * Record DTO para receber dados de criação de usuário no corpo da requisição.
+ * @param name do usuário
+ * @param email do usuário
+ * @param password do usuário
+ */
 @Builder
 public record CreateUserRequest(
     @NotBlank(message = "name must not be blank")
