@@ -3,6 +3,7 @@
 ![Badge Java](https://img.shields.io/static/v1?label=Java&message=17&color=orange&style=for-the-badge&logo=java)
 ![Badge Springboot](https://img.shields.io/static/v1?label=Springboot&message=v3.0.6&color=brightgreen&style=for-the-badge&logo=spring)
 ![Badge Postgresql](https://img.shields.io/static/v1?label=PostgreSQL&message=v15.2&color=blue&style=for-the-badge&logo=PostgreSQL)
+![Badge Heroku](https://img.shields.io/static/v1?label=Heroku&message=Deploy&color=4f3074&style=for-the-badge&logo=Heroku)
 
 ## Resumo do projeto
 REST API para avaliação das minhas habilidades como desenvolvedor Backend Java.
@@ -20,6 +21,7 @@ REST API para avaliação das minhas habilidades como desenvolvedor Backend Java
 - `Flyway`
 - `JJWT`
 - `Lombok`
+- `Heroku`
 
 ## Funcionalidades
 
@@ -251,6 +253,51 @@ Segue abaixo um exemplo do corpo da requisição.
   Em caso de sucesso a resposta tem status 204.
 <br>
 
+## Documentação
+A descrição de cada API e recursos está disponível na interface gráfica gerada pelo 
+[Swagger](https://powerkr-test-api.herokuapp.com/swagger-ui.html)
+
+### Acesso a recursos que requerem usuário autenticado
+Endpoints que requerem usuário autenticado devem receber um token no header Authorization da requisição, exemplo:
+```
+  'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJQb3dlcktSIFRlc3QgQVBJIiwic3ViIjoiZWRzb25AZW1haWwuY29tIiwiaWF0IjoxNjgzNDcxMzY3LCJleHAiOjE2ODM0NzQ5Njd9.RZ0rKo6LcLWlGj0vqfl9_AHCmDJXy9vJ4FS7C6_vRFg'
+```
+O token expira em 1 hora e pode ser gerado através do endpoint de autenticação.<br>
+Caso o header não seja enviado, ou um token inválido seja enviado, uma resposta com status **401 (Unauthorized)**  será devolvida.
+
+### Detalhes de erros
+Abaixo estão detalhes sobre status 4xx que o client pode receber como resposta.
+
+#### Campos inválidos
+O client enviou campos inválidos no corpo da requisição, pode ocorrer em requisições POST e PUT.<br>
+A resposta vem com status 400 e o corpo da resposta fornece quais campos e por que estão inválidos.
+
+#### Credenciais inválidas
+O client tentou realizar login com credenciais inválidas, verifique se o email ou password estão corretos.<br>
+A resposta vem com status 400 e mais detalhes no corpo da resposta.<br>
+Pode ocorrer em requisições POST para /api/v1/auth
+
+#### Unauthorized
+o client tentou acessar um recurso protegido e que requer token de acesso.<br>
+A resposta vem com status 401.
+
+#### Email já está em uso
+O email informado pelo client já está em uso no sistema, pode ocorrer em requisições POST de usuário.<br>
+A resposta vem com status 409 e mais detalhes no corpo da resposta.
+
+#### Recurso não encontrado
+O recurso que o client tentou acessar não existe na base de dados. Pode ocorrer em requisições GET por ID, PUT e DELETE.<br>
+A resposta vem com status 404 e mais detalhes no corpo da resposta.
+
+### Swagger
+Para enviar requisições através do [Swagger](https://powerkr-test-api.herokuapp.com/swagger-ui.html), basta clicar no 
+recurso desejado, clicar no botão **Try it out**, adicionar Parâmetros (se necessário), 
+adicionar corpo da requisição (se necessário) e clicar em **Execute**.<br><br>
+Para enviar token no header Authorization, realize o login através do recurso Autenticação, 
+copie o token que foi devolvido no corpo da resposta, sem as aspas, clique no botão **Authorize**, que abrirá 
+um pop-up, cole o token no campo **value** e clique em **Authorize**. Feche o pop-up e pronto, suas requisições 
+serão enviadas com o header Authorization e o token informado.
+
 ## Como executar a aplicação
   
   ### Via Docker
@@ -269,3 +316,31 @@ Execute o comando abaixo na pasta clonada:
 O comando acima executará o arquivo [powerkrtest-api.yml](https://github.com/Edson-Mendes/powerkr-test-api/blob/main/powerkrtest-api.yml),
 que irá subir um container PostgreSQL e um container da Aplicação.<br>
 Após subir os containers, acesse <http://localhost:8888/swagger-ui.html>.<br>
+
+## Deploy
+Realizei o deploy da aplicação no **Heroku**, você pode testar/usar através da interface gráfica gerada pelo swagger 
+[swagger-ui](https://powerkr-test-api.herokuapp.com/swagger-ui.html).<br>
+Ou enviando requisições diretamente aos endpoints usando alguma ferramenta de sua preferência como 
+curl, Postman, Insomnia etc.
+
+- `Host da API`: https://powerkr-test-api.herokuapp.com
+- `Endpoints disponíveis`
+  - `/api/v1/auth`: Endpoint para autenticar usuário e gerar token de acesso. Suporta requisições POST.
+  
+  - `/api/v1/users`: Endpoint para Cadastrar usuários e Buscar todos os usuários cadastrados.
+  Suporta requisições GET e POST.
+  
+  - `/api/v1/users/ID`: Endpoint para Buscar usuário por ID, Atualizar por ID e Deletar por ID.
+  Suporta requisições GET, PUT e DELETE.
+  
+  - `/api/v1/tasks`: Endpoint para Cadastrar tarefas e Buscar todos as tarefas cadastradas.
+  Suporta requisições GET e POST.
+  
+  - `/api/v1/tasks/ID`: Endpoint para Buscar tarefas por ID, Atualizar por ID e Deletar por ID.
+  Suporta requisições GET, PUT e DELETE.
+  - `/swagger-ui.html`: Endpoint que devolve a interface gráfica do Swagger, através dele o usuário da API
+  tem uma interface como documentação, e a possibilidade de interagir com os endpoints/recursos.
+  Suporta requisições GET.
+
+OBS: O plano que eu uso do Heroku **adormece** a aplicação depois de certo tempo inativo,
+então pode ser que a primeira requisição demore um pouco (até uns 60 segundos).
