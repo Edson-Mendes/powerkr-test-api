@@ -70,7 +70,7 @@ Segue abaixo um exemplo do corpo da requisição.
 
 - `Buscar Usuários - GET /api/v1/users`: Buscar todos os usuários cadastrados no sistema.<br>
   É necessário enviar token de autenticação no header da requisição, exemplo: **'Authorization: Bearer token.exemplo.de-autenticação'**.
-<br><br>
+<br>
 
     Em caso de sucesso a resposta tem status 200 com um JSON no corpo da resposta contendo uma lista de informações 
     dos usuários cadastrados **id**, **name** e **email**. Segue abaixo um exemplo do corpo da resposta.
@@ -92,7 +92,7 @@ Segue abaixo um exemplo do corpo da requisição.
 
 - `Buscar Usuário por ID - GET /api/v1/users/ID`: Buscar usuário por **ID**. Onde **ID** é o identificador do usuário.<br>
   É necessário enviar token de autenticação no header da requisição, exemplo: **'Authorization: Bearer token.exemplo.de-autenticação'**.
-<br><br>
+<br>
 
     Em caso de sucesso a resposta tem status 200 com um JSON no corpo da resposta contendo **id**, **name** e **email** do
     usuário buscado.<br> 
@@ -167,7 +167,7 @@ Segue abaixo um exemplo do corpo da requisição.
 
 - `Buscar Tarefas - GET /api/v1/tasks`: Buscar todas as tarefas cadastradas no sistema.<br>
   É necessário enviar token de autenticação no header da requisição, exemplo: **'Authorization: Bearer token.exemplo.de-autenticação'**.
-  <br><br>
+  <br>
 
   Em caso de sucesso a resposta tem status 200 com um JSON no corpo da resposta contendo uma lista de informações
   das tarefas cadastradas **id**, **title**, **description**, **status** e **conclusionDate** (conclusionDate só é enviado 
@@ -196,7 +196,7 @@ Segue abaixo um exemplo do corpo da requisição.
 
 - `Buscar Tarefa por ID - GET /api/v1/tasks/ID`: Buscar tarefa por **ID**. Onde **ID** é o identificador da tarefa.<br>
   É necessário enviar token de autenticação no header da requisição, exemplo: **'Authorization: Bearer token.exemplo.de-autenticação'**.
-  <br><br>
+  <br>
 
   Em caso de sucesso a resposta tem status 200 com um JSON no corpo da resposta contendo **id**, **title**, 
   **description**, **status** e **conclusionDate** (conclusionDate só é enviado se a tarefa estiver com **status** CONCLUDED).
@@ -250,3 +250,22 @@ Segue abaixo um exemplo do corpo da requisição.
 
   Em caso de sucesso a resposta tem status 204.
 <br>
+
+## Como executar a aplicação
+  
+  ### Via Docker
+Executar um container da aplicação que está no Docker hub. É necessário ter Docker compose instalado no computador.<br>
+Clone o projeto:
+    
+```bash
+    git clone git@github.com:Edson-Mendes/powerkr-test-api.git
+```
+
+Execute o comando abaixo na pasta clonada:
+  ```bash
+  docker compose -f powerkrtest-api.yml up
+  ```
+
+O comando acima executará o arquivo [powerkrtest-api.yml](https://github.com/Edson-Mendes/powerkr-test-api/blob/main/powerkrtest-api.yml),
+que irá subir um container PostgreSQL e um container da Aplicação.<br>
+Após subir os containers, acesse <http://localhost:8888/swagger-ui.html>.<br>

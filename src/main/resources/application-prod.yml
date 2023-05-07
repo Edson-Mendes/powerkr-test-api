@@ -1,0 +1,28 @@
+# Datasource properties
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+# JPA properties
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: validate
+
+# Max page size
+  data:
+    web:
+      pageable:
+        max-page-size: 100
+
+# jwt properties
+powerkr-test-api:
+  jwt:
+    expiration: ${JWT_EXPIRATION:86400000}
+    secret: ${JWT_SECRET:12341234123412341234123412341234}
