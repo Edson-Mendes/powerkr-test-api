@@ -53,29 +53,29 @@ em um JSON no corpo da requisição.<br>
 Não é necessário estar autenticado.<br> 
 Segue abaixo um exemplo do corpo da requisição.
     ```json
-    {
-      "name" : "Lorem Ipsum",
-      "email" : "lorem@email.com",
-      "password" : "1234567890"
-    }
+      {
+        "name" : "Lorem Ipsum",
+        "email" : "lorem@email.com",
+        "password" : "1234567890"
+      }
     ```
-    Em caso de sucesso a resposta tem status 201 com um JSON no corpo da resposta contendo **id**, **name** e **email** do 
-    usuário cadastrado. Segue abaixo um exemplo do corpo da resposta.
-  ```json
-    {
-      "id" : 150,
-      "name" : "Lorem Ipsum",
-      "email" : "lorem@email.com"
-    }
-  ```
+  Em caso de sucesso a resposta tem status 201 com um JSON no corpo da resposta contendo **id**, **name** e **email** do 
+  usuário cadastrado. Segue abaixo um exemplo do corpo da resposta.
+    ```json
+      {
+        "id" : 150,
+        "name" : "Lorem Ipsum",
+        "email" : "lorem@email.com"
+      }
+    ```
 <br>
 
 - `Buscar Usuários - GET /api/v1/users`: Buscar todos os usuários cadastrados no sistema.<br>
   É necessário enviar token de autenticação no header da requisição, exemplo: **'Authorization: Bearer token.exemplo.de-autenticação'**.
 <br>
 
-    Em caso de sucesso a resposta tem status 200 com um JSON no corpo da resposta contendo uma lista de informações 
-    dos usuários cadastrados **id**, **name** e **email**. Segue abaixo um exemplo do corpo da resposta.
+  Em caso de sucesso a resposta tem status 200 com um JSON no corpo da resposta contendo uma lista de informações 
+  dos usuários cadastrados **id**, **name** e **email**. Segue abaixo um exemplo do corpo da resposta.
     ```json
         [
           {
@@ -95,10 +95,10 @@ Segue abaixo um exemplo do corpo da requisição.
 - `Buscar Usuário por ID - GET /api/v1/users/ID`: Buscar usuário por **ID**. Onde **ID** é o identificador do usuário.<br>
   É necessário enviar token de autenticação no header da requisição, exemplo: **'Authorization: Bearer token.exemplo.de-autenticação'**.
 <br>
-
-    Em caso de sucesso a resposta tem status 200 com um JSON no corpo da resposta contendo **id**, **name** e **email** do
-    usuário buscado.<br> 
-    Segue abaixo um exemplo do corpo da resposta.
+ 
+  Em caso de sucesso a resposta tem status 200 com um JSON no corpo da resposta contendo **id**, **name** e **email** do
+  usuário buscado.<br> 
+  Segue abaixo um exemplo do corpo da resposta.
     ```json
         {
           "id" : 150,
@@ -309,13 +309,14 @@ Clone o projeto:
 ```
 
 Execute o comando abaixo na pasta clonada:
-  ```bash
-  docker compose -f powerkrtest-api.yml up
-  ```
+```bash
+    docker compose -f powerkrtest-api.yml up
+ ```
 
 O comando acima executará o arquivo [powerkrtest-api.yml](https://github.com/Edson-Mendes/powerkr-test-api/blob/main/powerkrtest-api.yml),
 que irá subir um container PostgreSQL e um container da Aplicação.<br>
 Após subir os containers, acesse <http://localhost:8888/swagger-ui.html>.<br>
+Se algo der errado, fique a vontate para usar a versão em [deploy](https://powerkr-test-api.herokuapp.com/swagger-ui.html).
 
 ## Deploy
 Realizei o deploy da aplicação no **Heroku**, você pode testar/usar através da interface gráfica gerada pelo swagger 

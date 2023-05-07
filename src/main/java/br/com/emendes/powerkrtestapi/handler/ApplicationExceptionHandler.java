@@ -38,7 +38,7 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     ProblemDetail problemDetail = ProblemDetail
         .forStatusAndDetail(HttpStatusCode.valueOf(400), "Some fields are invalid");
 
-    problemDetail.setType(URI.create("https://github.com/Edson-Mendes/powerkr-test-api/problem-detail/invalid-fields"));
+    problemDetail.setType(URI.create("https://github.com/Edson-Mendes/powerkr-test-api#campos-inv%C3%A1lidos"));
     problemDetail.setTitle("Invalid arguments");
     problemDetail.setProperty("fields", fields);
     problemDetail.setProperty("messages", messages);
@@ -52,7 +52,7 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     ProblemDetail problemDetail = ProblemDetail
         .forStatusAndDetail(HttpStatusCode.valueOf(status), ex.getMessage());
 
-    problemDetail.setType(URI.create("https://github.com/Edson-Mendes/powerkr-test-api/problem-detail/email-already-in-use"));
+    problemDetail.setType(URI.create("https://github.com/Edson-Mendes/powerkr-test-api#email-j%C3%A1-est%C3%A1-em-uso"));
     problemDetail.setTitle("Email conflict");
 
     return ResponseEntity.status(status).body(problemDetail);
@@ -64,7 +64,7 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     ProblemDetail problemDetail = ProblemDetail
         .forStatusAndDetail(HttpStatusCode.valueOf(status), ex.getMessage());
 
-    problemDetail.setType(URI.create("https://github.com/Edson-Mendes/powerkr-test-api/problem-detail/resource-not-found"));
+    problemDetail.setType(URI.create("https://github.com/Edson-Mendes/powerkr-test-api#recurso-n%C3%A3o-encontrado"));
     problemDetail.setTitle("Resource not found");
 
     return ResponseEntity.status(status).body(problemDetail);
@@ -75,7 +75,7 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     ProblemDetail problemDetail = ProblemDetail
         .forStatusAndDetail(HttpStatusCode.valueOf(400), "Incorrect email or password");
 
-    problemDetail.setType(URI.create("https://github.com/Edson-Mendes/powerkr-test-api/problem-detail/bad-credentials"));
+    problemDetail.setType(URI.create("https://github.com/Edson-Mendes/powerkr-test-api#credenciais-inv%C3%A1lidas"));
     problemDetail.setTitle(ex.getMessage());
 
     return ResponseEntity.badRequest().body(problemDetail);
