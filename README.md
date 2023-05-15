@@ -8,11 +8,7 @@
 ## Resumo do projeto
 REST API para avaliação das minhas habilidades como desenvolvedor Backend Java. A aplicação possui endpoints para criaçao e Login de usuários, endpoints para gerenciar e manipular os recursos Usuário (User) e Tarefas (Task), que são protegidos e requerem autenticaçao por JWT (Json Web Token) para serem manipulados.<br>
 
-A aplicação está no ar no Heroku, usando banco dados PostgreSQL.<br>
-
-Fiquem a vontate para testar como quiser. Podem criar novos usuários ou usar as credenciais email: **edson@email.com** e password: **1234567890**.<br>
-
-Abaixo também tem uma maneira de subir a aplicação localmente usando um arquivo .yml e Docker Compose.
+Abaixo tem uma maneira de subir a aplicação localmente usando um arquivo .yml e Docker Compose.
 
 ## Tecnologias e ferramentas
 - `IntelliJ`
@@ -263,7 +259,7 @@ Segue abaixo um exemplo do corpo da requisição.
 
 ## Documentação
 A descrição de cada API e recursos está disponível na interface gráfica gerada pelo 
-[Swagger](https://powerkr-test-api.herokuapp.com/swagger-ui.html)
+Swagger.
 
 ### Acesso a recursos que requerem usuário autenticado
 Endpoints que requerem usuário autenticado devem receber um token no header Authorization da requisição, exemplo:
@@ -298,7 +294,7 @@ O recurso que o client tentou acessar não existe na base de dados. Pode ocorrer
 A resposta vem com status 404 e mais detalhes no corpo da resposta.
 
 ### Swagger
-Para enviar requisições através do [Swagger](https://powerkr-test-api.herokuapp.com/swagger-ui.html), basta clicar no 
+Para enviar requisições através do Swagger, basta clicar no 
 recurso desejado, clicar no botão **Try it out**, adicionar Parâmetros (se necessário), 
 adicionar corpo da requisição (se necessário) e clicar em **Execute**.<br><br>
 Para enviar token no header Authorization, realize o login através do recurso Autenticação, 
@@ -324,32 +320,9 @@ Execute o comando abaixo na pasta clonada:
 O comando acima executará o arquivo [powerkrtest-api.yml](https://github.com/Edson-Mendes/powerkr-test-api/blob/main/powerkrtest-api.yml),
 que irá subir um container PostgreSQL e um container da Aplicação na porta 8888.<br>
 Após subir os containers, acesse <http://localhost:8888/swagger-ui.html>.<br>
-Se algo der errado, fique a vontate para usar a versão em [deploy](https://powerkr-test-api.herokuapp.com/swagger-ui.html).
 
 ## Deploy
-Realizei o deploy da aplicação no **Heroku**, você pode testar/usar através da interface gráfica gerada pelo swagger 
-[swagger-ui](https://powerkr-test-api.herokuapp.com/swagger-ui.html).<br>
-Ou enviando requisições diretamente aos endpoints usando alguma ferramenta de sua preferência como 
-curl, Postman, Insomnia etc.
+<s>Realizei o deploy da aplicação no **Heroku**, você pode testar/usar através da interface gráfica gerada pelo swagger 
+[swagger-ui](https://powerkr-test-api.herokuapp.com/swagger-ui.html).</s><br>
 
-- `Host da API`: https://powerkr-test-api.herokuapp.com
-- `Endpoints disponíveis`
-  - `/api/v1/auth`: Endpoint para autenticar usuário e gerar token de acesso. Suporta requisições POST.
-  
-  - `/api/v1/users`: Endpoint para Cadastrar usuários e Buscar todos os usuários cadastrados.
-  Suporta requisições GET e POST.
-  
-  - `/api/v1/users/ID`: Endpoint para Buscar usuário por ID, Atualizar por ID e Deletar por ID.
-  Suporta requisições GET, PUT e DELETE.
-  
-  - `/api/v1/tasks`: Endpoint para Cadastrar tarefas e Buscar todos as tarefas cadastradas.
-  Suporta requisições GET e POST.
-  
-  - `/api/v1/tasks/ID`: Endpoint para Buscar tarefas por ID, Atualizar por ID e Deletar por ID.
-  Suporta requisições GET, PUT e DELETE.
-  - `/swagger-ui.html`: Endpoint que devolve a interface gráfica do Swagger, através dele o usuário da API
-  tem uma interface como documentação, e a possibilidade de interagir com os endpoints/recursos.
-  Suporta requisições GET.
-
-OBS: O plano que eu uso do Heroku **adormece** a aplicação depois de certo tempo inativo,
-então pode ser que a primeira requisição demore um pouco (até uns 60 segundos).
+Apoś o término do processo seletivo eu removi a aplicação do ar.<br>
